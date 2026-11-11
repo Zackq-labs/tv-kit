@@ -1,0 +1,29 @@
+tvkit
+Copyright (c) 2026 zackq-labs. Released under the MIT License (see LICENSE).
+
+This project includes no third-party source code and no third-party binaries.
+It refers to two upstream projects:
+
+1. Free My TV
+   Upstream:  https://github.com/simbasjungles/free-my-tv
+   Licence:   MIT
+   Use here:  build/build-free-my-tv.sh and the pinned commit in kit.json. The script
+              fetches the upstream source at the pinned commit on your machine and builds
+              it with your own signing key. No upstream source is copied into this
+              repository. The upstream copyright and licence notice stay with the
+              upstream source you fetch.
+
+2. TV Bro
+   Upstream:  https://github.com/truefedex/tv-bro
+   Copyright (c) 2019, Fedir Tsapana. All rights reserved.
+   Licence:   the licence file in the upstream repository (BSD-style, with its own
+              conditions for binary redistribution and for modified builds). It is not
+              reproduced here; read it upstream.
+   Use here:  kit.json pins a release version and its sha256. This kit does not include
+              or mirror the TV Bro APK. You download the official release yourself from
+              https://github.com/truefedex/tv-bro/releases and tvkit refuses any file
+              that does not match the pin. The usb-pack command copies only that
+              verified, unmodified file you downloaded onto your own stick.
+
+tvkit is not affiliated with, endorsed by or sponsored by Google, Free My TV or TV Bro.
+Android, Google TV and Google Play are trademarks of Google LLC.

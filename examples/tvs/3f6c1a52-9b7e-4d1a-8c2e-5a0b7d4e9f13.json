@@ -1,0 +1,18 @@
+{
+  "adb_target": "192.0.2.41:5555",
+  "apps": [
+    "com.phlox.tvwebbrowser"
+  ],
+  "city": "London",
+  "kit_version": "2026.11.11",
+  "model": "Example Maker ExampleTV 4K, Android 12",
+  "name": "Living Room TV",
+  "notes": "Fictional example record. Replace it with the one `tvkit new` mints for your TV.",
+  "requests_url": "https://requests.example.com/",
+  "screensaver": "keep",
+  "set_up_on": "2026-01-15",
+  "site": "HOME",
+  "status": "active",
+  "tv_id": "3f6c1a52-9b7e-4d1a-8c2e-5a0b7d4e9f13",
+  "tz": "Europe/London"
+}

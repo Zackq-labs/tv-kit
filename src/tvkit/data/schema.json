@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tvkit per-TV record (<tv-id>.json)",
+  "description": "Sanitized. Never holds a pairing code, cookie, key, password or adb key. An OFFSITE record never mentions a home network address, any private address, a .local/.lan name or a machine name listed in kit.json lan_hostnames, and never stores adb_target or ha. tvkit check enforces these.",
+  "type": "object",
+  "required": [
+    "tv_id",
+    "name",
+    "site",
+    "kit_version"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "tv_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "A new UUID v4 minted by `tvkit new`. Never reused: a revoked or re-added TV gets a new one and the old record stays with status revoked."
+    },
+    "name": {
+      "type": "string",
+      "description": "A label for the TV, e.g. Living Room TV"
+    },
+    "site": {
+      "type": "string",
+      "enum": [
+        "HOME",
+        "OFFSITE"
+      ]
+    },
+    "model": {
+      "type": "string",
+      "description": "From the baseline: manufacturer, model, Android version"
+    },
+    "set_up_on": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Date of the switch, YYYY-MM-DD (local)"
+    },
+    "kit_version": {
+      "type": "string",
+      "description": "kit.json version used"
+    },
+    "screensaver": {
+      "type": "string",
+      "enum": [
+        "keep",
+        "app"
+      ],
+      "default": "keep"
+    },
+    "apps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Package names on the Free My TV shelf (for the record only; the owner edits the shelf on the TV)"
+    },
+    "city": {
+      "type": "string",
+      "description": "The weather city the owner set in Home Settings -> City (name only)"
+    },
+    "tz": {
+      "type": "string",
+      "description": "The TV's time zone, e.g. Europe/London"
+    },
+    "adb_target": {
+      "type": "string",
+      "description": "HOME only: where adb reaches the TV (host:port). It is a route, not an identity. Never for OFFSITE."
+    },
+    "ha": {
+      "type": "object",
+      "description": "HOME only, optional: Home Assistant entity ids once the TV joins Home Assistant (Android TV Remote integration)",
+      "additionalProperties": false,
+      "properties": {
+        "tv": {
+          "type": "string"
+        },
+        "tv_media_player": {
+          "type": "string"
+        },
+        "tv_remote": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "revoked"
+      ],
+      "default": "active"
+    },
+    "revoked_on": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "requests_url": {
+      "type": "string",
+      "description": "The https page this TV is pointed at (open-requests, offsite sheet, USB pack). No built-in default."
+    }
+  }
+}

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tvkit"
+version = "0.1.0"
+description = "Reproducible Android / Google TV set-up over adb: per-TV record, pinned and verified APKs, read-only baseline, after-check, undo, USB pack."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "zackq-labs" }]
+requires-python = ">=3.8"
+dependencies = []
+keywords = ["android-tv", "google-tv", "adb", "setup"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Environment :: Console",
+]
+
+[project.scripts]
+tvkit = "tvkit.cli:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tvkit = ["data/*.json", "data/profiles/*"]

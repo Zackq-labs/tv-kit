@@ -1,0 +1,70 @@
+SETTING UP YOUR TV: $tv_name
+tv-kit $kit_version, TV $tv_short. Made $made_at.
+
+The person helping you is on the phone for all of this. Nothing here needs
+their home network: your TV uses your own Wi-Fi and the internet, and one
+web address,
+$requests_url
+
+Before you start
+- The TV is on your Wi-Fi and the internet works (YouTube plays).
+- The USB stick is in the TV, or ready to plug in.
+- If anything looks wrong at any step, stop and tell your helper. Nothing
+  below deletes your apps, accounts or recordings.
+
+1. Re-save your Wi-Fi (about 2 minutes)
+   Settings -> Network & Internet -> your network -> Forget.
+   Then pick it again and type your Wi-Fi password.
+   Why: the new home screen turns off the TV's setup app. If the setup app
+   was the one that saved your Wi-Fi, the TV would forget it.
+
+2. Turn on Developer options
+   Settings -> System -> About -> press "Android TV OS build" 7 times
+   ("You are now a developer").
+   Settings -> System -> Developer options -> USB debugging: On.
+   If you see "Network debugging", turn it On too.
+
+3. Install the two apps from the USB stick
+   Google Play -> install a file manager (your helper will name one).
+   Settings -> Apps -> Security & restrictions -> Unknown sources ->
+   allow ONLY that file manager.
+   Open the file manager -> the USB stick -> tv-kit folder ->
+   $fmtv_file -> Install,
+   then $tvbro_file -> Install.
+   Settings -> Apps -> Security & restrictions -> Unknown sources ->
+   turn the file manager back OFF.
+
+4. Switch the home screen
+   Open Free My TV -> Home Screen -> Free My TV.
+   The TV asks "Allow USB debugging?": tick "Always allow", then Allow.
+   Press Home: the new home screen appears.
+
+5. Check it worked (tell your helper each one)
+$checks
+   If any of these is wrong: Free My TV -> Home Screen -> Original puts the
+   old home screen back. Then call your helper.
+
+6. Your weather city
+   Free My TV -> Home Settings -> City -> type your city -> pick it.
+
+7. Open the requests page
+   Open TV Bro. Go to: $requests_url
+   Set it as TV Bro's home page (TV Bro menu -> Settings -> Home page).
+   Only if your helper's request service uses a pairing code and the page
+   asks for one, your helper reads it to you. Type it exactly; never write
+   it down or pass it on.
+   Ask for one thing as a test: your helper should see "$tv_name" on their
+   side.
+
+What not to do
+- Don't write any pairing code down or send it to anyone.
+- Don't type any number address into TV Bro or any app.
+- Don't give "Unknown sources" to TV Bro, ever.
+
+Later
+- If a TV update brings the old home screen back: Free My TV -> Home
+  Screen -> Free My TV again.
+- To undo everything: Free My TV -> Home Screen -> Original, then
+  Settings -> Apps -> Free My TV -> Uninstall (and TV Bro).
+- If the TV is sold, lost or replaced, tell your helper: a new TV gets its
+  own new record.

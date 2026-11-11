@@ -1,0 +1,81 @@
+{
+  "kit": "tv-kit",
+  "version": "2026.11.11",
+  "rules": [
+    "Every TV gets its own unique ID and record. Never reuse one TV's ID for another.",
+    "Nothing for an off-site TV may be tied to a home network address.",
+    "Nothing runs on a TV without its owner present, saying go."
+  ],
+  "home_networks": [
+    "192.0.2.0/24"
+  ],
+  "home_networks_note": "Your own home network(s) in CIDR form (192.0.2.0/24 is a documentation example). An OFFSITE TV may not use an address inside them; replace with yours.",
+  "lan_hostnames": [
+    "my-server",
+    "my-nas",
+    "my-pihole"
+  ],
+  "lan_hostnames_note": "Names of your own machines. An OFFSITE record, the off-site profile and anything tvkit writes for an off-site TV may not name one; tvkit refuses them like a private IP (lan_leaks). Replace with yours.",
+  "requests_url": "",
+  "requests_url_note": "Optional kit-wide default for the page open-requests / offsite-sheet / usb-pack point a TV at. Empty on purpose: set requests_url in a TV's record or pass --requests-url.",
+  "profiles": {
+    "OFFSITE": "profiles/offsite.json"
+  },
+  "artifacts_location": {
+    "note": "APKs and any signing keystore are NEVER in git. Put the APKs in the artifacts folder (default ~/.local/share/tvkit/artifacts, or --artifacts / TVKIT_ARTIFACTS). tvkit check refuses any file whose sha256 or signer differs from the pins below."
+  },
+  "artifacts": {
+    "free-my-tv": {
+      "file": "FreeMyTV-fa471834-tvkit.apk",
+      "package": "io.freemytv",
+      "version": "1.2 (versionCode 3)",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "signer_cert_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "pin_note": "PLACEHOLDER. Free My TV is built by you, from the pinned upstream commit, with your own signing key (build/build-free-my-tv.sh), so no hash can be shipped. Paste the sha256 and signer_cert_sha256 the build script prints, then run tvkit check.",
+      "source": {
+        "repo": "https://github.com/simbasjungles/free-my-tv",
+        "commit": "fa471834534b66b2323f98e79ada424306aadef4",
+        "release_reviewed": "v1.2.0"
+      },
+      "build": {
+        "script": "build/build-free-my-tv.sh",
+        "config_template": "build/config.properties.template",
+        "settings": {
+          "show_crypto": false,
+          "screensaver": false,
+          "disable_assistant": false,
+          "tmdb_key": "(empty: no key baked in; each TV may add one in Home Settings -> TMDB key)",
+          "latitude_longitude": "51.5074,-0.1278 (build default; each TV sets its own city on the TV: Home Settings -> City)",
+          "generic": false
+        },
+        "toolchain": "JDK 17 + Android build-tools 34.0.0 + platform android-34, user space, no root needed"
+      },
+      "city_on_tv": "In the reviewed source (fa471834) the Home Settings row 'City' stores the city the owner types and uses it ahead of the build's default, so one build serves every TV."
+    },
+    "tv-bro": {
+      "file": "tvbro-2.1.6-generic-geckoExcluded.apk",
+      "package": "com.phlox.tvwebbrowser",
+      "version": "2.1.6 (versionCode 69)",
+      "sha256": "d8634edfe8d94b4fb9a52005d68a090a7f1e85b7f39c2cf01a25dc9dd60942b2",
+      "signer_cert_sha256": "1e5124be7e7fcb7a6462b47a42a8567863c6fccc6fe7708cd278be4f43047c75",
+      "signer_note": "Upstream release key. Download the APK yourself from the upstream releases page; this kit only pins its version and hashes and ships no APK. usb-pack copies only the file you downloaded, after it matches the pin.",
+      "source": {
+        "repo": "https://github.com/truefedex/tv-bro",
+        "release": "v2.1.6",
+        "asset": "tvbro-2.1.6-generic-geckoExcluded.apk (system WebView build)",
+        "review_notes": "Declares REQUEST_INSTALL_PACKAGES (in-app updater; never grant unknown-apps), QUERY_ALL_PACKAGES and runtime camera/mic/location (never grant)."
+      }
+    }
+  },
+  "expect": {
+    "disabled_by_switch": [
+      "com.google.android.apps.tv.launcherx",
+      "com.google.android.tungsten.setupwraith",
+      "com.google.android.play.games",
+      "com.google.android.youtube.tvmusic"
+    ],
+    "home_component": "io.freemytv/.HomeActivity",
+    "play_store": "com.android.vending",
+    "note": "With screensaver=keep the screensaver setting must be unchanged; with screensaver=app it must be io.freemytv/... ."
+  }
+}

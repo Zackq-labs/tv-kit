@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/src/
+build/*.apk
+build/*.sha256
+dist/
+.pytest_cache/
+
+# Never commit these
+*.apk
+*.keystore
+*.jks
+*.pem
+*.key
+keys/
+artifacts/
+work/

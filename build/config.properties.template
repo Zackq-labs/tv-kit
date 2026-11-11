@@ -1,0 +1,46 @@
+# tv-kit: Free My TV config.properties for the ONE kit build that serves every TV.
+# Copied by build/build-free-my-tv.sh. No secrets here: this file is in git and anything in it ends up readable in the APK.
+#
+# The weather city is NOT set here per TV. Every TV sets its own in Free My TV -> Home Settings -> City
+# (verified in source at fa471834: Prefs.setCity wins over these values). The values below are only the default
+# a TV shows before its owner picks a city.
+
+tmdb_region=US
+
+# No TMDB key baked in (it would be readable by any app on any TV). A TV that wants the trending picks adds one on the
+# TV: Home Settings -> TMDB key.
+tmdb_key=
+# (empty on purpose)
+
+# Default position before the owner picks a city on the TV (London). Not the TV's identity.
+latitude=51.5074
+longitude=-0.1278
+city=London
+
+hide_animation=false
+language=auto
+
+# No crypto prices (Binance calls off).
+show_crypto=false
+currency=USD
+
+temperature=auto
+theme=auto
+
+# Keep Google Assistant and the remote's mic button.
+disable_assistant=false
+
+# false: the TV keeps its own screensaver (fewer changes; tvkit after expects the screensaver setting unchanged).
+screensaver=false
+
+hide_services=
+hide_apps=
+shelf_apps=
+watchmode_key=
+# (empty on purpose)
+drawer_first=false
+
+# Never bake a Plex token into the APK (any app on the TV can read it).
+plex_url=
+plex_token=
+# (empty on purpose)

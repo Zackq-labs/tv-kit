@@ -1,0 +1,56 @@
+{
+  "profile": "OFFSITE",
+  "rules": [
+    "Every TV gets its own unique ID and record. Never reuse one TV's ID for another.",
+    "Nothing for an off-site TV may be tied to a home network address.",
+    "Nothing runs on a TV without its owner present, saying go."
+  ],
+  "identity": {
+    "kit_record": "tvkit new --site OFFSITE mints a fresh UUID v4 tv_id (a record file). Never reused, never copied from another TV.",
+    "pairing_code": "If your request service uses pairing codes: read one out by phone while the owner is at the pairing screen. Never put it in a record, file or email.",
+    "address": "No address of any kind is part of the identity. The record stores no adb target."
+  },
+  "tv_reaches": [
+    "your requests page (the requests_url you set for this TV; the only address of yours the TV uses)",
+    "the TV's normal internet: Google Play, any streaming apps the owner uses"
+  ],
+  "tv_never_uses": [
+    "any private (RFC 1918) address, .local or .lan name of your home network",
+    "your home DNS server or ad-blocker (the TV keeps its own router's DNS)",
+    "a local media-server address (the media app finds its server through its own account)",
+    "your home dashboard or any web portal inside your network",
+    "Home Assistant or any other home-automation system",
+    "your VPN, tunnel or relay"
+  ],
+  "requests": {
+    "recommended": "r-browser",
+    "paths": {
+      "r-browser": {
+        "what": "TV Bro (pinned in kit.json) opens your requests page URL on the TV (tvkit open-requests, or the owner types it in).",
+        "why_recommended": "Already pinned and checked by the kit, nothing new to build or sideload."
+      },
+      "own-app": {
+        "what": "A small app of your own that talks to the same page. Not part of this kit: tvkit does not install it.",
+        "when": "Only if you build one; then pin it in kit.json like the others."
+      }
+    },
+    "note": "A TV at another address reaches only your requests page URL."
+  },
+  "install_paths": {
+    "usb": {
+      "who": "The owner on their TV, you on the phone. No computer at their address.",
+      "prep": "tvkit usb-pack --tv <tv-id> --out <stick folder> (checks sha256 + signer against kit.json first, then copies the APKs and writes SHA256SUMS, READ-ME-ON-THE-TV.txt and tv-kit-offsite.json)."
+    },
+    "laptop": {
+      "who": "You in person with a laptop on their Wi-Fi.",
+      "prep": "The normal runbook (check, baseline, wifi-check, install, after) with --target <the TV's address or USB serial> on every command. The target is never stored. tvkit refuses any target inside your home_networks."
+    }
+  },
+  "checks_without_adb": [
+    "Press Home: the Free My TV home appears.",
+    "Google Play opens from the Free My TV shelf or apps drawer.",
+    "Settings -> Network & Internet shows your Wi-Fi as Connected.",
+    "Settings -> Apps -> See all apps -> Show system apps: Google TV Home, the Google TV setup app, Google Play Games and YouTube Music show Disabled; nothing else you use does.",
+    "Your usual apps (YouTube, Netflix, ...) still open and play."
+  ]
+}
